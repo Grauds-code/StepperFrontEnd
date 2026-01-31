@@ -1,0 +1,46 @@
+.logo {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+
+/* override navbar background if you want a custom color */
+.navbar {
+  background-color: rgb(0, 38, 209); /* keep your green background */
+  padding-bottom: 0;
+}
+
+/* ensure nav links are readable on bright background */
+.navbar .nav-link {
+  color: #000 !important;
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.nav-link {
+  color: #000;
+  font-weight: 600;
+  padding: 1rem 1.2rem;
+  position: relative;
+
+  border-radius: 0; /* svarīgi */
+  transition: background-color 0.2s ease;
+}
+.nav-link:hover {
+  background-color: #fff;
+  color: #000;
+}
+.nav-link.active {
+  background-color: #fff;
+  color: #000;
+}
+
+/* small spacing for auth buttons */
+.auth .button-register { margin-right: 0.5rem; }
+
+/* responsive tweak: reduce padding on small screens */
+@media (max-width: 600px) {
+  .navbar { padding: 0.25rem 0.5rem; }
+}
