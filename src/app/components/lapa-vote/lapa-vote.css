@@ -1,0 +1,28 @@
+.poll-card {
+  border-radius: 16px;
+}
+
+.poll-card .form-control {
+  border-radius: 12px;
+}
+
+.poll-card .input-group-text {
+  border-radius: 12px;
+}
+
+.poll-card .btn {
+  border-radius: 12px;
+}
+
+/* mazliet tīrāks “WhatsApp” vibe */
+.poll-card .card-header,
+.poll-card .card-footer {
+  border-radius: 16px;
+}
+
+.create-bar{
+  position: fixed;
+  top: 92px;      /* pielāgo atkarībā no navbar augstuma */
+  right: 16px;
+  z-index: 1050;  /* virs satura */
+}

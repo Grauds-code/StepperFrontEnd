@@ -1,2 +1,180 @@
 <app-navbar></app-navbar>
-<p>lapa-vote works!</p>
+<div class="create-bar px-2 py-1">
+  <button
+    class="btn btn-success btn-sm"
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#createPollModal"
+  >
+    Create
+  </button>
+</div>
+
+<!-- Display published polls -->
+<div class="container py-4">
+  <div class="row justify-content-center">
+    @for (poll of publishedPolls; track poll.pollQuestion; let i = $index) {
+      <div class="col-12 col-md-8 col-lg-6 mb-3">
+        <div class="card shadow-sm border-0">
+          <div class="card-body position-relative">
+            <button
+              type="button"
+              class="btn-close position-absolute top-0 end-0 m-2"
+              aria-label="Close"
+              (click)="removePoll(i)"
+            ></button>
+            <h5 class="card-title fw-semibold mb-3">{{ poll.pollQuestion }}</h5>
+            <div class="vstack gap-2">
+              <button class="btn btn-outline-primary text-start">{{ poll.option1 }}</button>
+              <button class="btn btn-outline-primary text-start">{{ poll.option2 }}</button>
+              @if (poll.option3) {
+                <button class="btn btn-outline-primary text-start">{{ poll.option3 }}</button>
+              }
+              @if (poll.option4) {
+                <button class="btn btn-outline-primary text-start">{{ poll.option4 }}</button>
+              }
+              @if (poll.option5) {
+                <button class="btn btn-outline-primary text-start">{{ poll.option5 }}</button>
+              }
+              @if (poll.option6) {
+                <button class="btn btn-outline-primary text-start">{{ poll.option6 }}</button>
+              }
+            </div>
+            @if (poll.allowMultiple) {
+              <small class="text-muted d-block mt-2">Vairāki atbilžu varianti atļauti</small>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Modal for creating poll -->
+<div
+  class="modal fade"
+  id="createPollModal"
+  tabindex="-1"
+  aria-labelledby="createPollModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="card shadow-sm border-0 poll-card">
+        <div
+          class="card-header bg-white border-0 d-flex align-items-center justify-content-between"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm"
+              aria-label="Close"
+              data-bs-dismiss="modal"
+            >
+              ✕
+            </button>
+            <div class="fw-semibold">Izveidot aptauju</div>
+          </div>
+        </div>
+
+        <div class="card-body" [formGroup]="form">
+          <!-- Question -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Jautājums</label>
+
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Uzdot jautājumu"
+                formControlName="pollQuestion"
+                maxlength="140"
+              />
+              <span class="input-group-text">☺</span>
+            </div>
+
+            @if (form.get('pollQuestion')?.touched && form.get('pollQuestion')?.invalid) {
+              <div class="text-danger small mt-1">Lūdzu ievadi jautājumu.</div>
+            }
+          </div>
+
+          <!-- Options -->
+          <div class="mb-3" formArrayName="options">
+            <label class="form-label fw-semibold">Iespējas</label>
+
+            <div class="vstack gap-2">
+              @for (ctrl of options.controls; track $index; let i = $index) {
+                <div>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Pievienot tekstu"
+                      [formControlName]="i"
+                      maxlength="60"
+                    />
+                    <span class="input-group-text">☺</span>
+
+                    @if (canRemoveOption(i)) {
+                      <button
+                        type="button"
+                        class="btn btn-outline-danger"
+                        (click)="removeOption(i)"
+                        aria-label="Remove option"
+                      >
+                        ✕
+                      </button>
+                    }
+                  </div>
+
+                  @if (ctrl.touched && ctrl.invalid) {
+                    <div class="text-danger small mt-1">Šī iespēja ir obligāta.</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between mt-3">
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-sm"
+                (click)="addOption()"
+                [disabled]="!canAddOption()"
+              >
+                + Pievienot iespēju
+              </button>
+
+              <span class="text-muted small"> {{ optionsCount }}/{{ MAX_OPTIONS }} </span>
+            </div>
+          </div>
+
+          <!-- Allow multiple -->
+          <div class="d-flex align-items-center justify-content-between border-top pt-3">
+            <div class="fw-semibold">Atļaut vairākus atbilžu variantus</div>
+
+            <div class="form-check form-switch m-0">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                formControlName="allowMultiple"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer bg-white border-0">
+          <button
+            type="button"
+            class="btn btn-success w-100"
+            (click)="createPollVote()"
+            [disabled]="form.invalid"
+          >
+            Create poll-vote
+          </button>
+          <div class="text-muted small mt-2">Obligāti: jautājums + pirmās 2 iespējas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

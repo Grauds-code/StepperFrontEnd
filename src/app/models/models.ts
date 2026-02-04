@@ -5,6 +5,7 @@ interface TournamentCard {
   nextGameStartTime: string;
   youAreRegistered: boolean;
   quickMatch: boolean;
+  sportType: string;
   //Vai tas ir quick match vai turnirs.
   //Quick match un turnira apbalovjumi atskiras.
   //Quickmatch un turnira struktura atskiras.
@@ -43,4 +44,5 @@ interface PollVote {
   option4?: string;
   option5?: string;
   option6?: string;
+  allowMultiple?: boolean;
 }
