@@ -1,4 +1,5 @@
-interface TournamentCard {
+export interface TournamentCard {
+  id?: number;
   tournamentName: string;
   registrationDeadline?: string; //Vel nezinu vai bus vajadzigs.
   tournamentStartTime: string;
@@ -17,26 +18,30 @@ interface TournamentCard {
   //Vai tas ietekme kadi bus parejie models?
 }
 
-interface TournamentSectionCard {
+export interface TournamentSectionCard {
+  id?: number;
   sectionName: string;
   sectionStartTime: string;
   nextGameStartTime: string;
 }
 
-interface StageCard {
+export interface StageCard {
+  id?: number;
   stageName: string;
   stageStartTime: string;
   nextGameStartTime: string;
   preTournamentStage: boolean;
 }
 
-interface GameCard {
+export interface GameCard {
+  id?: number;
   team1Name: string;
   team2Name: string;
   gameStartTime: string;
 }
 
-interface PollVote {
+export interface PollVote {
+  id?: number;
   pollQuestion: string;
   option1: string;
   option2: string;
