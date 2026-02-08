@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LapaVote } from './components/lapa-vote/lapa-vote';
 import { LapaGamelobby } from './components/lapa-gamelobby/lapa-gamelobby';
-import { LapaHome } from './lapa-home/lapa-home';
+import { LapaHome } from './components/lapa-home/lapa-home';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'lapahome', pathMatch: 'full' },

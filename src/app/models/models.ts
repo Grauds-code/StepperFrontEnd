@@ -1,3 +1,5 @@
+import { signal } from '@angular/core';
+
 export interface TournamentCard {
   id?: number;
   tournamentName: string;
@@ -18,11 +20,30 @@ export interface TournamentCard {
   //Vai tas ietekme kadi bus parejie models?
 }
 
+export function createTournamentCard() {
+  return signal<TournamentCard>({
+    tournamentName: '',
+    tournamentStartTime: '',
+    nextGameStartTime: '',
+    youAreRegistered: false,
+    quickMatch: false,
+    sportType: '',
+  });
+}
+
 export interface TournamentSectionCard {
   id?: number;
   sectionName: string;
   sectionStartTime: string;
   nextGameStartTime: string;
+}
+
+export function createTournamentSectionCard() {
+  return signal<TournamentSectionCard>({
+    sectionName: '',
+    sectionStartTime: '',
+    nextGameStartTime: '',
+  });
 }
 
 export interface StageCard {
@@ -33,11 +54,28 @@ export interface StageCard {
   preTournamentStage: boolean;
 }
 
+export function createStageCard() {
+  return signal<StageCard>({
+    stageName: '',
+    stageStartTime: '',
+    nextGameStartTime: '',
+    preTournamentStage: false,
+  });
+}
+
 export interface GameCard {
   id?: number;
   team1Name: string;
   team2Name: string;
   gameStartTime: string;
+}
+
+export function createGameCard() {
+  return signal<GameCard>({
+    team1Name: '',
+    team2Name: '',
+    gameStartTime: '',
+  });
 }
 
 export interface PollVote {
@@ -50,4 +88,17 @@ export interface PollVote {
   option5?: string;
   option6?: string;
   allowMultiple?: boolean;
+}
+
+export function createPollVote() {
+  return signal<PollVote>({
+    pollQuestion: '',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    option5: '',
+    option6: '',
+    allowMultiple: false,
+  });
 }
