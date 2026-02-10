@@ -1,0 +1,125 @@
+:host {
+	--pv-blue: rgb(0, 38, 209);
+	--pv-ink: #000;
+	--pv-bg: #fff;
+	--pv-outline: #c7cde6;
+	--pv-shadow: rgba(0, 38, 209, 0.18);
+	display: block;
+	font-family: "Orbitron", system-ui, sans-serif;
+	color: var(--pv-ink);
+}
+
+div {
+	background: var(--pv-blue);
+	border-radius: 16px;
+	padding: 18px;
+	box-shadow: 0 12px 26px var(--pv-shadow);
+	display: grid;
+	gap: 12px;
+}
+
+input[type="text"] {
+	border: 2px solid var(--pv-outline);
+	border-radius: 10px;
+	padding: 12px 14px;
+	font-size: 14px;
+	background: var(--pv-bg);
+	color: var(--pv-ink);
+	outline: none;
+	text-transform: uppercase;
+	letter-spacing: 0.4px;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+input[type="text"]::placeholder {
+	color: rgba(0, 0, 0, 0.55);
+}
+
+input[type="text"]:focus {
+	border-color: #fff;
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+	transform: translateY(-1px);
+}
+
+button[type="button"] {
+	margin-top: 14px;
+	background: #fff;
+	border: none;
+	color: #000;
+	padding: 10px 16px;
+	border-radius: 10px;
+	font-size: 14px;
+	letter-spacing: 0.6px;
+	text-transform: uppercase;
+	cursor: pointer;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.add-option {
+	margin-top: 6px;
+	background: transparent;
+	border: 2px dashed #fff;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.8px;
+	box-shadow: none;
+}
+
+button.add-option:hover {
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+button.add-option:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+button[type="button"]:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+}
+
+button[type="button"]:active {
+	transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+	div {
+		padding: 14px;
+	}
+
+	input[type="text"] {
+		font-size: 13px;
+	}
+}
+button.create-poll {
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+
+button.close-poll {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.option-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+button.remove-option {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}

@@ -1,0 +1,152 @@
+:host {
+	--pv-blue: rgb(0, 38, 209);
+	--pv-ink: #000;
+	--pv-bg: #fff;
+	--pv-outline: #c7cde6;
+	--pv-shadow: rgba(0, 38, 209, 0.18);
+	display: block;
+	font-family: "Orbitron", system-ui, sans-serif;
+	color: var(--pv-ink);
+}
+
+.poll-publish {
+	background: var(--pv-blue);
+	border-radius: 16px;
+	padding: 18px;
+	box-shadow: 0 12px 26px var(--pv-shadow);
+	display: grid;
+	gap: 16px;
+}
+
+.poll-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.poll-title h3 {
+	margin: 0 0 6px;
+	color: #fff;
+	letter-spacing: 0.4px;
+}
+
+.poll-mode {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.8px;
+}
+
+.delete-poll {
+	background: transparent;
+	color: #fff;
+	border: 2px solid #fff;
+	border-radius: 10px;
+	padding: 8px 12px;
+	font-size: 12px;
+	letter-spacing: 0.6px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.delete-poll:hover {
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+.poll-options {
+	display: grid;
+	gap: 10px;
+}
+
+.option {
+	position: relative;
+	border: 2px solid var(--pv-outline);
+	border-radius: 12px;
+	padding: 12px 14px;
+	background: #fff;
+	color: var(--pv-ink);
+	text-align: left;
+	font-size: 14px;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+	cursor: pointer;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.option.selected {
+	border-color: #fff;
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.option.locked {
+	cursor: default;
+}
+
+.option .label {
+	position: relative;
+	z-index: 1;
+}
+
+.option .percent {
+	position: relative;
+	z-index: 1;
+	font-weight: 700;
+}
+
+.option .bar {
+	position: absolute;
+	inset: 0 0 0 0;
+	background: rgba(0, 38, 209, 0.18);
+	width: 0;
+	z-index: 0;
+	transition: width 0.4s ease;
+}
+
+.poll-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.vote-button {
+	background: #fff;
+	border: none;
+	color: #000;
+	padding: 10px 16px;
+	border-radius: 10px;
+	font-size: 14px;
+	letter-spacing: 0.6px;
+	text-transform: uppercase;
+	cursor: pointer;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vote-button:disabled {
+	opacity: 0.65;
+	cursor: not-allowed;
+	box-shadow: none;
+}
+
+.locked-hint {
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.6px;
+}
+
+@media (max-width: 640px) {
+	.poll-publish {
+		padding: 14px;
+	}
+
+	.option {
+		font-size: 13px;
+	}
+}

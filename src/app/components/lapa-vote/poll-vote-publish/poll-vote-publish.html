@@ -1,0 +1,50 @@
+@if (poll()) {
+  <section class="poll-publish">
+    <header class="poll-header">
+      <div class="poll-title">
+        <h3>{{ poll()!.pollQuestion }}</h3>
+        <p class="poll-mode">
+          @if (poll()!.allowMultiple) {
+            Multiple answers
+          } @else {
+            One answer
+          }
+        </p>
+      </div>
+      <button type="button" class="delete-poll" (click)="requestRemove()">Delete</button>
+    </header>
+
+    <div class="poll-options">
+      @for (option of options(); track option.index) {
+        <button
+          type="button"
+          class="option"
+          [class.selected]="isSelected(option.index)"
+          [class.locked]="submitted()"
+          (click)="toggleOption(option.index)"
+          [disabled]="submitted()"
+        >
+          <span class="label">{{ option.label }}</span>
+          @if (submitted()) {
+            <span class="percent">{{ percent(option.index) }}%</span>
+          }
+          <span class="bar" [style.width.%]="submitted() ? percent(option.index) : 0"></span>
+        </button>
+      }
+    </div>
+
+    <div class="poll-actions">
+      <button
+        type="button"
+        class="vote-button"
+        (click)="submitVote()"
+        [disabled]="submitted() || !hasSelection()"
+      >
+        Submit vote
+      </button>
+      @if (submitted()) {
+        <span class="locked-hint">Vote locked</span>
+      }
+    </div>
+  </section>
+}

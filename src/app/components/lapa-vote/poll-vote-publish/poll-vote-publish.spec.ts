@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PollVote } from './poll-vote';
+import { PollVotePublish } from './poll-vote-publish';
 
-describe('PollVote', () => {
-  let component: PollVote;
-  let fixture: ComponentFixture<PollVote>;
+describe('PollVotePublish', () => {
+  let component: PollVotePublish;
+  let fixture: ComponentFixture<PollVotePublish>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PollVote]
-    })
-    .compileComponents();
+      imports: [PollVotePublish],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(PollVote);
+    fixture = TestBed.createComponent(PollVotePublish);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

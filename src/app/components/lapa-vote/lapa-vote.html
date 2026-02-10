@@ -1,2 +1,12 @@
 <app-navbar></app-navbar>
-<p>lapa-vote works!</p>
+<app-poll-vote-creator
+  [readyVote]="pollVoteForm"
+  (publish)="onPublish($event)"
+></app-poll-vote-creator>
+@for (poll of publishedPolls; track $index) {
+  <app-poll-vote-publish
+    [poll]="poll"
+    [pollIndex]="$index"
+    (remove)="onRemovePoll($event)"
+  ></app-poll-vote-publish>
+}

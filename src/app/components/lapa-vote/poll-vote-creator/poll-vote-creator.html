@@ -1,1 +1,83 @@
-<p>poll-vote-creator works!</p>
+<button type="button" class="create-poll" (click)="openForm()">Create Poll</button>
+
+@if (showForm) {
+  <div>
+    <input
+      type="text"
+      placeholder="Enter your question"
+      [value]="readyVote().pollQuestion().value()"
+      (input)="readyVote().pollQuestion().value.set($any($event.target).value)"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Option 1"
+      [value]="readyVote().option1().value()"
+      required
+      (input)="readyVote().option1().value.set($any($event.target).value)"
+    />
+
+    <input
+      type="text"
+      placeholder="Option 2"
+      [value]="readyVote().option2().value()"
+      required
+      (input)="readyVote().option2().value.set($any($event.target).value)"
+    />
+    @if (showOption3) {
+      <div class="option-row">
+        <input
+          type="text"
+          placeholder="Option 3"
+          [value]="readyVote().option3!().value()"
+          (input)="readyVote().option3!().value.set($any($event.target).value)"
+        />
+        <button type="button" class="remove-option" (click)="removeOption(3)">✕</button>
+      </div>
+    }
+    @if (showOption4) {
+      <div class="option-row">
+        <input
+          type="text"
+          placeholder="Option 4"
+          [value]="readyVote().option4!().value()"
+          (input)="readyVote().option4!().value.set($any($event.target).value)"
+        />
+        <button type="button" class="remove-option" (click)="removeOption(4)">✕</button>
+      </div>
+    }
+    @if (showOption5) {
+      <div class="option-row">
+        <input
+          type="text"
+          placeholder="Option 5"
+          [value]="readyVote().option5!().value()"
+          (input)="readyVote().option5!().value.set($any($event.target).value)"
+        />
+        <button type="button" class="remove-option" (click)="removeOption(5)">✕</button>
+      </div>
+    }
+    @if (showOption6) {
+      <div class="option-row">
+        <input
+          type="text"
+          placeholder="Option 6"
+          [value]="readyVote().option6!().value()"
+          (input)="readyVote().option6!().value.set($any($event.target).value)"
+        />
+        <button type="button" class="remove-option" (click)="removeOption(6)">✕</button>
+      </div>
+    }
+
+    <button
+      type="button"
+      class="add-option"
+      (click)="addOption()"
+      [disabled]="showOption3 && showOption4 && showOption5 && showOption6"
+    >
+      Add new option
+    </button>
+    <button type="button" class="close-poll" (click)="closeForm()">Close</button>
+    <button type="button" (click)="submit()">Submit</button>
+  </div>
+}
